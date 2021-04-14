@@ -1,0 +1,110 @@
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+     Stack<Integer> s = new Stack<>();
+     
+     int x [] = {1, 3 ,2, 4 };
+     List<Integer> res = new ArrayList<>();
+     int n = x.length;
+     
+    // s.push(x[n-1]);
+    // res.add(-1);
+     
+     // Next greater element to right
+     for (int i =  n - 1 ; i >= 0;i--) {
+         if (i < n - 1) {
+             System.out.println(" At " + x[i] + " pushing " + x[i+1]);
+         s.push(x[i+1]);
+         }
+         while (!s.isEmpty() && s.peek() <= x[i]) {
+             s.pop();
+         }
+         printStack(s);
+         if (!s.isEmpty())
+         res.add(s.peek());
+         else
+         res.add(-1);
+     }
+     Collections.reverse(res);
+     System.out.println(res);
+     
+     // Next greater element to left
+     s.empty();
+    s = new Stack<Integer>();
+     System.out.println("Original ----" + x);
+     res = new ArrayList<>();
+      for (int i =  0 ; i < n ;i++) {
+         if (i > 0) {
+             System.out.println(" At " + x[i] + " pushing " + x[i-1]);
+         s.push(x[i-1]);
+         }
+         while (!s.isEmpty() && s.peek() <= x[i]) {
+             s.pop();
+         }
+         printStack(s);
+         if (!s.isEmpty())
+         res.add(s.peek());
+         else
+         res.add(-1);
+     }
+     //Collections.reverse(res);
+     System.out.println(res);
+     
+     // next smaller element to left
+     System.out.println("Smaller tom left");
+     s = new Stack<>();
+     res = new ArrayList<>();
+      int x1[] = {4,5,2,10,8};
+      n = x1.length;
+     for (int i = 0 ; i < n;i++) {
+         if (i > 0) {
+                System.out.println(" At " + x1[i] + " pushing " + x1[i-1]);
+             s.push(x1[i-1]);
+         }
+         
+         printStack(s);
+         while (!s.isEmpty() && s.peek() >= x1[i])
+         s.pop();
+         
+         printStack(s);
+         if (s.isEmpty())
+         res.add(-1);
+         else
+         res.add(s.peek());
+     }
+     
+     System.out.println(res);
+     
+     
+     // next smaller element to right
+     System.out.println("Smaller tom right");
+     s = new Stack<>();
+     res = new ArrayList<>();
+      int x11[] = {4,5,2,10,8};
+      n = x11.length;
+     for (int i = n-1 ; i >= 0;i--) {
+         if (i < n -1) {
+                System.out.println(" At " + x11[i] + " pushing " + x11[i+1]);
+             s.push(x1[i+1]);
+         }
+         
+         printStack(s);
+         while (!s.isEmpty() && s.peek() <= x11[i])
+         s.pop();
+         
+         printStack(s);
+         if (s.isEmpty())
+         res.add(-1);
+         else
+         res.add(s.peek());
+     }
+     Collections.reverse(res);
+     System.out.println(res);
+    }
+    
+    
+    private static void printStack(Stack<Integer> s) {
+        List<Integer> res = new ArrayList<>(s);
+        System.out.println(res);
+    }
+}
